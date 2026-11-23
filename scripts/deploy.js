@@ -1,32 +1,11 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
-const hre = require("hardhat");
+// Run with `yarn hardhat run scripts/deploy.js`. Hardhat compiles the contracts
+// before running the script.
+import { network } from "hardhat";
 
-async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+const { ethers } = await network.getOrCreate();
 
-  // We get the contract to deploy
-  const Phionthrium = await hre.ethers.getContractFactory("Phionthrium");
-  const phionthrium = await Phionthrium.deploy();
+// We get the contract to deploy
+const phionthrium = await ethers.deployContract("Phionthrium");
+await phionthrium.waitForDeployment();
 
-  await phionthrium.deployed();
-
-  console.log("Deployed to:", phionthrium.address);
-}
-
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+console.log("Deployed to:", await phionthrium.getAddress());
