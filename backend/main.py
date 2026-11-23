@@ -1,12 +1,16 @@
 # for windows phionthrium\Scripts\activate
 from flask import Flask, request, Response
+import hmac
 import json
+import logging
+import os
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-MASTER_KEY = "TESTING.7#%"
+# Admin key for deleting entries. Set it in the environment; deleting is disabled when unset.
+MASTER_KEY = os.environ.get("MASTER_KEY")
 
 # dumby info
 content = [
@@ -83,12 +87,17 @@ def removeEntry():
         keys = json_item['keys']
 
         uid = int(uid)
-        if uid and keys and 0 < uid <= len(content) and keys == MASTER_KEY:
+        if not (MASTER_KEY and hmac.compare_digest(str(keys).encode(), MASTER_KEY.encode())):
+            return {"error": "entry was not deleted"}, 403
+
+        if uid and 0 < uid <= len(content):
             del content[uid-1]
             return {"message": "entry was deleted"}
 
     except:
         return {"error": f"entry was not deleted"}
+
+    return {"error": "entry was not deleted"}
 
 @app.errorhandler(500)
 def server_error(e):

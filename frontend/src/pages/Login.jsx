@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState } from 'react'
 import { PublicKeyContext } from '../App'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 export const Login = () => {
     const { publicKey, setPublicKey } = useContext(PublicKeyContext)

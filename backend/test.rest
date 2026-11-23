@@ -33,5 +33,5 @@ Content-Type: application/json
 
 {
     "uid": "4",
-    "keys": "TESTING.7#%",
+    "keys": "<value of the MASTER_KEY environment variable>",
 }

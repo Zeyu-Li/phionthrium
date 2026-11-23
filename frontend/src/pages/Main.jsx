@@ -13,7 +13,7 @@ export const MainPage = () => {
         //     headers: { 'Content-Type': 'application/json' },
         //     body: JSON.stringify({
         //         "uid": "4",
-        //         "keys": "TESTING.7#%",
+        //         "keys": "<MASTER_KEY>",
         //     })
         // };
         // fetch('https://aesthetic-nova-304123.uw.r.appspot.com/api/entry/remove/', requestOptions)

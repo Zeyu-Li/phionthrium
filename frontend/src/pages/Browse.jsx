@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import { NavBar } from '../Components/NavBar/NavBar'
 // import NavBar from '../Components/index'

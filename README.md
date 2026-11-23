@@ -26,16 +26,17 @@ Smart contract: https://github.com/KolbyML/Phionthrium/blob/main/contracts/Phion
 
 
 
-Dev environment:
+Dev environment (Hardhat 3, Node 22.10+):
 
 ```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+yarn install
+yarn hardhat accounts
+yarn hardhat compile
+yarn hardhat clean
+yarn hardhat test
+yarn hardhat node
+yarn hardhat run scripts/deploy.js
+yarn hardhat help
 ```
 
 ## 
@@ -44,11 +45,14 @@ npx hardhat help
 
 Python Flask
 
-using venv `phionthrium\Scripts\activate`
+using venv `phionthrium\Scripts\activate`, then `pip install -r requirements.txt` (Python 3.10+)
+
+Deleting entries requires the `MASTER_KEY` environment variable; the endpoint refuses every delete when it is unset.
 
 ### Dependencies
 
 - Flask
+- Flask-CORS
 
 ## Front end
 
